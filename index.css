@@ -1,0 +1,296 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li{
+  list-style: none;
+}
+header {
+    width: 100%;
+    top: 0;
+    background-color: #fff;
+    display: flex;
+    position: fixed;
+    padding: 0 10px;
+    align-items: center;
+    z-index: 10;
+}
+
+.show{
+  display:block;
+}
+
+.hide{
+  display:none;
+}
+
+.logo{
+  height:28px;
+  cursor:pointer;
+
+}
+.logo-box {
+    display: flex;
+    align-items: center;
+    margin: 0 5px;
+  }
+
+.material-icons{
+  cursor:pointer;
+}
+
+.header-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-box{
+    width:100%;
+}
+
+.input-box{
+    width: 40%;
+    /* height: 37px; */
+    border: 1px solid rgb(195, 195, 195);
+    border-radius: 20px 0 0 20px;
+    padding: 10px 15px;
+    margin-left: 10px;
+    box-shadow: inset 4px 3px rgba(215, 215, 215, 0.1);
+    outline: none;
+}
+
+.input-box:focus{
+    border-color: darkblue;
+    box-shadow: inset 1px 3px 7px rgba(215, 215, 215);
+}
+
+.search-btn{
+    background-color: rgb(244, 244, 244);
+    border-radius: 0 20px 20px 0;
+    border: 1px solid rgb(195, 195, 195);
+    border-left: none;
+    padding: 6px;
+    width: 70px;
+    text-align: center;
+}
+
+.search-btn:hover{
+    background-color: rgb(232, 230, 230); 
+}
+
+.mic-btn{
+    border-radius: 25px;
+    width: fit-content;
+    margin: 5px;
+    padding: 10px;
+}
+.mic-btn:hover{
+  background-color: rgb(232, 230, 230); 
+}
+
+.menu-background{
+    /* position: relative; */
+    margin-right:30px;
+    padding:10px;
+    /* transition: all 2s; */
+}
+
+.menu-background:hover{
+  background-color: rgb(232, 230, 230); 
+  border-radius: 25px;
+}
+.personal-background:hover{
+  background-color: rgb(232, 230, 230); 
+  border-radius: 40px;
+}
+
+
+/* nav바 */
+nav {
+  background-color: #fff;
+  position: fixed;
+  top: 65px;
+  height: 100vh;
+  font-size: 11px;
+  text-align: center;
+  width: 70px;
+}
+
+.personal-box{
+  margin:0 3px;
+  padding:10px;
+}
+.nav-background {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: break-all;
+  }
+
+  .nav-text {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: break-all;
+  }
+
+  .nav-menu {
+    width: 100%;
+    padding: 15px 10px;
+    display: inline-block;
+  }
+  .nav-menu:hover {
+    background-color: rgba(195, 195, 195, 0.2);
+    border-radius: 20px;
+  }
+
+  /* menu버튼 클릭 시 보이는 내부 navigation바 */
+  .inner-nav{
+    width:250px;
+    /* border:1px solid #000; */
+    position:fixed;
+    top:65px;
+    height: 100%;
+    background-color: #fff;
+    padding:0 15px;
+    overflow: scroll;
+    padding-bottom:50px;
+    /* -ms-overflow-style: none; */
+  }
+  
+  .inner-section{
+    border-bottom: 1px solid rgb(208, 208, 208);
+    padding: 10px;
+  }
+  
+  .inner-section li{
+    padding:5px 0;
+  }
+  
+  .inner-contents{
+    display: block;
+    padding:8px 0;
+  }
+  .icon-div{
+    position:absolute;
+    top: 60px;
+  }
+  .icons{
+    position:relative;
+    font-size:12px;
+    background-color: gray;
+    border-radius: 5px;
+    text-align: center;
+    padding:10px;
+    color:#fff;
+    z-index: 100;
+    /* display: none; */
+  }
+  
+  .section-list{
+    display:flex;
+    align-items: center;
+    font-size:14px;
+    padding:3px;
+  }
+  
+  .section-list:hover{
+    background-color: rgb(232, 230, 230);
+    border-radius:10px;
+    cursor:pointer;
+  
+  }
+  .section-list span{
+    margin-right:20px;
+  }
+
+
+  /* 메인 */
+  main {
+    margin: 0 auto;
+  }
+
+  .article-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-top: 92px;
+    padding-left: 160px;
+  }
+  article {
+    flex-basis: 262px;
+    flex-grow: 1;
+    margin-bottom:50px;
+    cursor:pointer;
+  }
+
+  .thumbnail {
+    max-width: 300px;
+    height: 70%;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+  .infobox {
+    display: flex;
+    margin-top: 10px;
+  }
+
+  /* 프로필아이콘 */
+.profile-img {
+    margin-right: 10px;
+    /* display: */
+  }
+  
+  .info {
+    width: 75%;
+  }
+  
+  /*영상 제목 */
+  .title {
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size:16px;
+  }
+  
+  /* 영상 부가 설명 */
+  .desc {
+    color: rgb(96, 95, 95);
+    font-size:14px;
+
+  }
+  
+  /* 채널명 */
+  .channel {
+    margin-bottom: 5px;
+  }
+
+  .view{
+    margin-right:5px;
+  }
+  /* 메인 끝 (영상목록) */
+
+
+  @media (max-width: 658px) {
+    header {
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 22px;
+    }
+    .input-box {
+      display: none;
+    }
+    .search-btn{
+      border:none;
+      background:none;
+    }
+    .search-btn:hover{
+      background:none;
+    }
+    .icon-div{
+      top: 80px;
+    }
+    .inner-nav
+  }
