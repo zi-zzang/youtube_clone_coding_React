@@ -150,15 +150,13 @@ nav {
   /* menu버튼 클릭 시 보이는 내부 navigation바 */
   .inner-nav{
     width:250px;
-    /* border:1px solid #000; */
     position:fixed;
-    top:65px;
+    top:54px;
     height: 100%;
     background-color: #fff;
     padding:0 15px;
     overflow: scroll;
     padding-bottom:50px;
-    /* -ms-overflow-style: none; */
   }
   
   .inner-section{
@@ -273,6 +271,9 @@ nav {
   /* 메인 끝 (영상목록) */
 
 
+  .hide{
+    display:none;
+  }
   @media (max-width: 658px) {
     header {
       justify-content: space-between;
@@ -292,5 +293,4 @@ nav {
     .icon-div{
       top: 80px;
     }
-    .inner-nav
   }
