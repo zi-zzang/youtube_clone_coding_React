@@ -83,16 +83,20 @@
 
         //헤더 검색박스
         const HeaderSearchComponent = () =>{
+            const [hoverIcon, setHoverIcon] = React.useState(null);
             const icon = [["검색","search"],["음성검색","mic"]]
             return(
                 <div className="header-box search-box">
                     <input type="text" placeholder="검색" className="input-box" />
                     {icon.map((value)=>{
                         return(
-                            <div onMouseOver={()=>{}} onMouseLeave={()=>{}} key={value[1]}>
+                            <div onMouseOver={()=>{setHoverIcon(value[0])}} onMouseLeave={()=>{setHoverIcon(null)}} key={value[1]}>
                                 <span className={value[1]+"-btn material-icons"} id={value[1]+"-btn"}>{value[1]}</span>
                                 <div className="icon-div">
-                                    <span className="icons">{value[0]}</span>
+                                    {hoverIcon === value[0] ? 
+                                        <span className="icons">{value[0]}</span> : 
+                                        <span className="icons hide"></span>
+                                    }
                                 </div>
                             </div>
                         )
@@ -103,17 +107,21 @@
         }
 
         //헤더 아이콘박스
-        const HeaderRightComponent = (props) =>{          
+        const HeaderRightComponent = (props) =>{       
+            const [hoverIcon, setHoverIcon] = React.useState(null);   
             const {show} = props;
-            const iconList = [["만들기","video_call"],["알림","notifications"],["my","account_circle"]]
+            const iconList = [["만들기","video_call"],["알림","notifications"],["My","account_circle"]]
             return(
                 <div className="header-box">
                     {iconList.map((value)=>{
                         return(
-                            <div key={value[1]}>
+                            <div key={value[1]} onMouseOver={()=>{setHoverIcon(value[0])}} onMouseLeave={()=>{setHoverIcon(null)}}>
                                 <span className="personal-background material-icons personal-box">{value[1]}</span>
                                 <div className="icon-div">
-                                    <span className="icons">{value[0]}</span>
+                                    {hoverIcon === value[0] ? 
+                                        <span className="icons">{value[0]}</span> : 
+                                        <span className="icons hide"></span>
+                                    }
                                 </div>
                             </div>
                         )
@@ -124,7 +132,6 @@
 
         //header 부모 컴포넌트
         const HeaderComponent = ({isToggle,setIsToggle,show}) =>{
-
             return(
                 <header>
                     <HeaderLogoComponent isToggle={isToggle} setIsToggle={setIsToggle}/>
@@ -134,7 +141,7 @@
             )
         }
 
-        
+
 
 
         //nav바
@@ -250,7 +257,6 @@
         }
         
         const MainComponent = ({padding,isToggle}) => {
-
             const thumbnail = [
                 "https://cdn.imweb.me/upload/S201910012ff964777e0e3/62f9a36ea3cea.jpg",
                 "https://images.pexels.com/photos/58997/pexels-photo-58997.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
