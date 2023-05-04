@@ -107,9 +107,8 @@
         }
 
         //헤더 아이콘박스
-        const HeaderRightComponent = (props) =>{       
+        const HeaderRightComponent = () =>{       
             const [hoverIcon, setHoverIcon] = React.useState(null);   
-            const {show} = props;
             const iconList = [["만들기","video_call"],["알림","notifications"],["My","account_circle"]]
             return(
                 <div className="header-box">
@@ -131,12 +130,12 @@
         }
 
         //header 부모 컴포넌트
-        const HeaderComponent = ({isToggle,setIsToggle,show}) =>{
+        const HeaderComponent = ({isToggle,setIsToggle}) =>{
             return(
                 <header>
                     <HeaderLogoComponent isToggle={isToggle} setIsToggle={setIsToggle}/>
-                    <HeaderSearchComponent  show={show}/>
-                    <HeaderRightComponent  show={show}/>
+                    <HeaderSearchComponent />
+                    <HeaderRightComponent />
                 </header>
             )
         }
@@ -295,10 +294,9 @@
         //가장 처음 실행 되는 함수
         const App = () => {
             const [isToggle,setIsToggle] = React.useState(false);
-            const [show,setShow] = React.useState(false);
             return(
                 <React.Fragment>
-                    <HeaderComponent isToggle={isToggle} setIsToggle={setIsToggle} show={show}/>
+                    <HeaderComponent isToggle={isToggle} setIsToggle={setIsToggle}/>
                     <NavComponent />
                     <MainComponent isToggle={isToggle}/>
                 </React.Fragment>
