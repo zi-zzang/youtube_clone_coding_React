@@ -14,56 +14,108 @@
 <body>
     <div id="root"></div>
     <script type="text/babel">
-        const menuButtonEvent = (e)=>{
-            e.preventDefault();
-            const [isFalse,setIsToggle] = React.useState(false);
-            setIsToggle(true);
+
+        //inner-nav바
+        const InnerSectionComponent = (props) => {
+            const {list} = props;
+            return(
+                <div className="inner-section">
+                    {list.map((value,index)=>{
+                        return(
+                            <div className="section-list" key={value}>
+                                <span className="material-icons">{list[index][0]}</span>
+                                <span className="inner-contents">{list[index][1]}</span>
+                            </div>
+                        )
+                    })}
+                </div>
+            )
         }
+
+        const InnerNavBarComponent = () => {
+            const navSectionList = [  
+                [
+                    ["home","홈"],["live_tv","Shorts"],["subscriptions","구독"],["smart_display","Originals"],["play_circle","YouTube Music"]
+                ],
+                [
+                    ["video_library","보관함"], ["history","시청 기록"], ["slideshow","내 동영상"], ["schedule","나중에 볼 동영상"], ["download","오프라인 저장 동영상"], ["thumb_up","좋아요 표시한 동영상"]
+                ],
+                [
+                    ["account_circle","지현"]
+                ],
+                [
+                    ["local_fire_department","인기 급상승"], ["shopping_bag","쇼핑"], ["music_note","음악"], ["movie","영화"], ["stream","실시간"], ["videogame_asset","게임"], ["emoji_events","스포츠"], ["lightbulb","학습"]
+                ],
+                [
+                    ["smart_display","YouTube Studio"], ["smart_display","YouTube Music"], ["smart_display","YouTube Kids"]
+                ],
+                [
+                    ["settings","설정"],[ "flag","신고 기록"], ["help","고객센터"], ["sms_failed","의견 보내기"]
+                ]
+            ];
+            return(
+                <div className="inner-nav">
+                    {navSectionList.map((value)=>{
+                        return(
+                            <InnerSectionComponent list={value} key={value}/>
+                        );
+                    })}
+                </div>
+            )
+        }
+        
         //헤더 로고
-        const HeaderLogoComponent = () =>{
+        const HeaderLogoComponent = ({isToggle,setIsToggle}) =>{
+            const menuButtonEvent = ()=>{
+                setIsToggle(!isToggle);
+            }
+            
             return(
                 <div className="logo-box">
                     <span className="material-icons menu-background" id="menu-btn" onClick={menuButtonEvent}>
                         menu
                     </span>
                     <img className="logo" src="/logo.png" alt="YouTube"/>
+                    {isToggle && <InnerNavBarComponent/>}
                 </div>
             )
         }
 
         //헤더 검색박스
         const HeaderSearchComponent = () =>{
+            const icon = [["검색","search"],["음성검색","mic"]]
             return(
                 <div className="header-box search-box">
-                    <input type="text" placeholder="검색" className="input-box"/>
-                    <div>
-                        <span className="search-btn material-icons" id="search-btn">search</span>
-                    </div>
-                    <div>
-                        <span className="mic-btn material-icons">mic</span>
-                    </div>
+                    <input type="text" placeholder="검색" className="input-box" />
+                    {icon.map((value)=>{
+                        return(
+                            <div onMouseOver={()=>{}} onMouseLeave={()=>{}} key={value[1]}>
+                                <span className={value[1]+"-btn material-icons"} id={value[1]+"-btn"}>{value[1]}</span>
+                                <div className="icon-div">
+                                    <span className="icons">{value[0]}</span>
+                                </div>
+                            </div>
+                        )
+                    })}
+
                 </div>
             )
         }
 
-        //헤더 아이콘(만들기, 알림, 마이페이지)
-        const HeaderIconComponent = (props) =>{
-            const {icon} = props;
-            return(
-                <div>
-                    <span className="personal-background material-icons personal-box">{icon}</span>
-                </div>
-            )
-        }
-        
         //헤더 아이콘박스
-        const HeaderRightComponent = () =>{
-            const iconList = ["video_call","notifications","account_circle"]
+        const HeaderRightComponent = (props) =>{          
+            const {show} = props;
+            const iconList = [["만들기","video_call"],["알림","notifications"],["my","account_circle"]]
             return(
                 <div className="header-box">
-                    {iconList.map((v)=>{
+                    {iconList.map((value)=>{
                         return(
-                            <HeaderIconComponent icon={v} key={v}/>
+                            <div key={value[1]}>
+                                <span className="personal-background material-icons personal-box">{value[1]}</span>
+                                <div className="icon-div">
+                                    <span className="icons">{value[0]}</span>
+                                </div>
+                            </div>
                         )
                     })}
                 </div>
@@ -71,12 +123,13 @@
         }
 
         //header 부모 컴포넌트
-        const HeaderComponent = () =>{
+        const HeaderComponent = ({isToggle,setIsToggle,show}) =>{
+
             return(
                 <header>
-                    <HeaderLogoComponent/>
-                    <HeaderSearchComponent/>
-                    <HeaderRightComponent/>
+                    <HeaderLogoComponent isToggle={isToggle} setIsToggle={setIsToggle}/>
+                    <HeaderSearchComponent  show={show}/>
+                    <HeaderRightComponent  show={show}/>
                 </header>
             )
         }
@@ -108,58 +161,6 @@
             )
         }
         
-
-        //inner-nav바
-        const InnerSectionComponent = (props) => {
-            const {list} = props;
-            return(
-                <div className="inner-section">
-                    {list.map((value,index)=>{
-                        return(
-                            <div className="section-list" key={value}>
-                                <span className="material-icons">{list[index][0]}</span>
-                                <span className="inner-contents">{list[index][1]}</span>
-                            </div>
-                        )
-                    })}
-                </div>
-                        )
-        }
-
-        const InnerNavBarComponent = () => {
-            const navSectionList = [  
-                [
-                    ["home","홈"],["live_tv","Shorts"],["subscriptions","구독"],["smart_display","Originals"],["play_circle","YouTube Music"]
-                ],
-                [
-                    ["video_library","보관함"], ["history","시청 기록"], ["slideshow","내 동영상"], ["schedule","나중에 볼 동영상"], ["download","오프라인 저장 동영상"], ["thumb_up","좋아요 표시한 동영상"]
-                ],
-                [
-                    ["account_circle","지현"]
-                ],
-                [
-                    ["local_fire_department","인기 급상승"], ["shopping_bag","쇼핑"], ["music_note","음악"], ["movie","영화"], ["stream","실시간"], ["videogame_asset","게임"], ["emoji_events","스포츠"], ["lightbulb","학습"]
-                ],
-                [
-                    ["smart_display","YouTube Studio"], ["smart_display","YouTube Music"], ["smart_display","YouTube Kids"]
-                ],
-                [
-                    ["settings","설정"],[ "flag","신고 기록"], ["help","고객센터"], ["sms_failed","의견 보내기"]
-                ]
-            ];
-            return(
-                <div className="inner-nav hide">
-                    {navSectionList.map((value)=>{
-                        return(
-                            <InnerSectionComponent list={value} key={value}/>
-                        );
-                    })}
-                </div>
-            )
-        }
-
-     
-
 
 
 
@@ -248,7 +249,8 @@
             )
         }
         
-        const MainComponent = () => {
+        const MainComponent = ({padding,isToggle}) => {
+
             const thumbnail = [
                 "https://cdn.imweb.me/upload/S201910012ff964777e0e3/62f9a36ea3cea.jpg",
                 "https://images.pexels.com/photos/58997/pexels-photo-58997.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -268,7 +270,8 @@
                 "https://images.pexels.com/photos/599492/pexels-photo-599492.jpeg?auto=compress&cs=tinysrgb&w=1600"
             ]
             return(
-                <main>
+                // isToggle이 참이면 padding에 140px 값이 들어가고 거짓일 경우 padding 값 0
+                <main style={{paddingLeft: isToggle ? "140px" : 0}}>
                     <div className="article-box">
                         {thumbnail.map((value,index)=>{
                             return(
@@ -283,20 +286,20 @@
 
 
 
-
         //가장 처음 실행 되는 함수
         const App = () => {
-            ReactDOM.createRoot(document.getElementById("root")).render(
+            const [isToggle,setIsToggle] = React.useState(false);
+            const [show,setShow] = React.useState(false);
+            return(
                 <React.Fragment>
-                    <HeaderComponent />
+                    <HeaderComponent isToggle={isToggle} setIsToggle={setIsToggle} show={show}/>
                     <NavComponent />
-                    <InnerNavBarComponent/>
-                    <MainComponent />
+                    <MainComponent isToggle={isToggle}/>
                 </React.Fragment>
-                )
+            )
         }
 
-        App();
+        ReactDOM.createRoot(document.getElementById("root")).render(<App />);
     </script>
 </body>
 </html>
