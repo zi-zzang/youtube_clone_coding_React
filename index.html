@@ -65,7 +65,8 @@
         }
         
         //헤더 로고
-        const HeaderLogoComponent = ({isToggle,setIsToggle}) =>{
+        const HeaderLogoComponent = (props) =>{
+            const {isToggle,setIsToggle} = props;
             const menuButtonEvent = ()=>{
                 setIsToggle(!isToggle);
             }
@@ -130,7 +131,8 @@
         }
 
         //header 부모 컴포넌트
-        const HeaderComponent = ({isToggle,setIsToggle}) =>{
+        const HeaderComponent = (props) =>{
+            const {isToggle,setIsToggle} = props;
             return(
                 <header>
                     <HeaderLogoComponent isToggle={isToggle} setIsToggle={setIsToggle}/>
@@ -244,7 +246,7 @@
             )
         }      
 
-        //목록 1개
+        //목록 (개별)
         const ArticleComponent = (props) => {
             const {thumbnail} = props;
             return(
@@ -255,7 +257,8 @@
             )
         }
         
-        const MainComponent = ({padding,isToggle}) => {
+        const MainComponent = (props) => {
+            const {padding,isToggle} = props;
             const thumbnail = [
                 "https://cdn.imweb.me/upload/S201910012ff964777e0e3/62f9a36ea3cea.jpg",
                 "https://images.pexels.com/photos/58997/pexels-photo-58997.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
